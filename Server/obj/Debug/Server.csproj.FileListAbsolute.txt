@@ -12,3 +12,9 @@ C:\Users\guapo\Dropbox\Week 5\ChatroomStarter (2)\ChatroomStarter\ChatroomStarte
 C:\Users\jgill\Documents\DevCode\zips\ChatroomStarter\ChatroomStarter\ChatroomStarter\Server\bin\Debug\Server.exe.config
 C:\Users\jgill\Documents\DevCode\zips\ChatroomStarter\ChatroomStarter\ChatroomStarter\Server\obj\Debug\Server.exe
 C:\Users\jgill\Documents\DevCode\zips\ChatroomStarter\ChatroomStarter\ChatroomStarter\Server\obj\Debug\Server.pdb
+C:\Users\jgill\Documents\Visual Studio 2015\Projects\ChatroomStarter\ChatroomStarter\ChatroomStarter\Server\bin\Debug\Server.exe.config
+C:\Users\jgill\Documents\Visual Studio 2015\Projects\ChatroomStarter\ChatroomStarter\ChatroomStarter\Server\obj\Debug\Server.exe
+C:\Users\jgill\Documents\Visual Studio 2015\Projects\ChatroomStarter\ChatroomStarter\ChatroomStarter\Server\obj\Debug\Server.pdb
+C:\Users\jgill\Documents\Visual Studio 2015\Projects\ChatroomStarter\ChatroomStarter\ChatroomStarter\Server\bin\Debug\Server.exe
+C:\Users\jgill\Documents\Visual Studio 2015\Projects\ChatroomStarter\ChatroomStarter\ChatroomStarter\Server\bin\Debug\Server.pdb
+C:\Users\jgill\Documents\Visual Studio 2015\Projects\ChatroomStarter\ChatroomStarter\ChatroomStarter\Server\obj\Debug\Server.csprojResolveAssemblyReference.cache

@@ -13,16 +13,21 @@ namespace Server
     class Server
     {
         public static Client client;
+        Queue<string> MessageLog;
         TcpListener server;
+        Thread BroadCast;
         public Server()
         {
-            server = new TcpListener(IPAddress.Parse("127.0.0.1"), 9999);
+            server = new TcpListener(IPAddress.Parse("192.168.0.111"), 9999);
             server.Start();
+            MessageLog = new Queue<string>();
         }
         public void Run()
         {
             AcceptClient();
             string message = client.Recieve();
+            MessageLog.Enqueue(message);
+            
             Respond(message);
         }
         private void AcceptClient()
