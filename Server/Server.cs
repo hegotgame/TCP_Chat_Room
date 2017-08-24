@@ -21,6 +21,7 @@ namespace Server
         public Server()
         {
             server = new TcpListener(IPAddress.Parse("192.168.0.104"), 9999);
+
             server.Start();
             MessageLog = new Queue<string>();
         }
@@ -43,7 +44,7 @@ namespace Server
                 Console.WriteLine("Connected");
                 NetworkStream stream = clientSocket.GetStream();
                 client = new Client(stream, clientSocket);
-                
+
         }
         private void Respond(string body)
         {

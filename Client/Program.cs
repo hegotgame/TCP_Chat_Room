@@ -12,6 +12,7 @@ namespace Client
         {
 
             Client client = new Client("192.168.0.104", 9999);
+
             while (true)
             {
                 client.Send();
