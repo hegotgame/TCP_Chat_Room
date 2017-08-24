@@ -18,37 +18,59 @@ namespace Server
         Dictionary<string, TcpClient> UserId;
         string ClientMessage;
         
+
         public Server()
         {
             server = new TcpListener(IPAddress.Parse("192.168.0.104"), 9999);
-
             server.Start();
             MessageLog = new Queue<string>();
+            UserId = new Dictionary<string, TcpClient>();
+            
         }
         public void Run()
         {
             AcceptClient();
 
-            while (true)
-            {
-                MessageLog.Enqueue(client.Recieve());
-                ClientMessage = MessageLog.Dequeue();
-                Respond(ClientMessage);
-            }
+            MessageLog.Enqueue(client.Recieve());
+            ClientMessage = MessageLog.Dequeue();
+            Respond(ClientMessage);
  
         }
         private void AcceptClient()
         {
-                TcpClient clientSocket = default(TcpClient);
-                clientSocket = server.AcceptTcpClient();
-                Console.WriteLine("Connected");
-                NetworkStream stream = clientSocket.GetStream();
-                client = new Client(stream, clientSocket);
+            try
+            {
+                while (true)
+                {
+                    TcpClient clientSocket = default(TcpClient);
+                    clientSocket = server.AcceptTcpClient();
+                    Console.WriteLine("Connected");
+                    //create thread
+                    NetworkStream stream = clientSocket.GetStream();
+                    client = new Client(stream, clientSocket);
+
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            finally
+            { if (server != null)
+                {
+                    server.Stop();
+                }
+            }
 
         }
         private void Respond(string body)
         {
              client.Send(body);
+        }
+
+        private void BroadCast()
+        {
+            //requires a foreach loop to send the latest message to every client
         }
     }
 }

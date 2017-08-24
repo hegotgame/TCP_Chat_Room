@@ -12,12 +12,8 @@ namespace Client
         {
 
             Client client = new Client("192.168.0.104", 9999);
+            Parallel.Invoke(client.Send, client.Recieve);
 
-            while (true)
-            {
-                client.Send();
-                client.Recieve();
-            }
         }
     }
 }
