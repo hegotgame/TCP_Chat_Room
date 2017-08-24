@@ -14,14 +14,17 @@ namespace Server
         TcpClient client;
         public string UserName;
 
+
         public Client(NetworkStream Stream, TcpClient Client)
         {
             stream = Stream;
             client = Client;
             Console.WriteLine("Enter a username: ");
             UserName = Console.ReadLine();
-            
+
+
         }
+
 
         public void Send(string Message)
         {

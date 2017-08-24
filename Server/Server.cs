@@ -15,14 +15,16 @@ namespace Server
         public static Client client;
         Queue<string> MessageLog;
         TcpListener server;
+
         Dictionary<string, TcpClient> UserId;
         Thread BroadCast;
+        
         public Server()
         {
-            server = new TcpListener(IPAddress.Parse("127.0.0.1"), 9999);
+            server = new TcpListener(IPAddress.Parse("192.168.0.111"), 9999);
             server.Start();
             MessageLog = new Queue<string>();
-            UserId = new Dictionary<string, TcpClient>(); 
+
         }
         public void Run()
         {
