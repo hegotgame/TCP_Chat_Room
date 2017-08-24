@@ -15,8 +15,7 @@ namespace Server
         {
             sender = Sender;
             this.Body = Body;
-
-           // UserId = sender?.UserName;
+            UserId = sender?.UserId;
 
         }
     }
