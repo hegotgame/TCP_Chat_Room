@@ -11,11 +11,12 @@ namespace Client
         static void Main(string[] args)
         {
 
-            Client client = new Client("127.0.0.1", 9999);
-
-            client.Send();
-            client.Recieve();
-            Console.ReadLine();
+            Client client = new Client("192.168.0.104", 9999);
+            while (true)
+            {
+                client.Send();
+                client.Recieve();
+            }
         }
     }
 }

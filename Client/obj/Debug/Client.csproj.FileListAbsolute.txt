@@ -4,3 +4,9 @@ C:\Users\jgill\Documents\Visual Studio 2015\Projects\ChatroomStarter\ChatroomSta
 C:\Users\jgill\Documents\Visual Studio 2015\Projects\ChatroomStarter\ChatroomStarter\ChatroomStarter\Client\obj\Debug\Client.csprojResolveAssemblyReference.cache
 C:\Users\jgill\Documents\Visual Studio 2015\Projects\ChatroomStarter\ChatroomStarter\ChatroomStarter\Client\obj\Debug\Client.exe
 C:\Users\jgill\Documents\Visual Studio 2015\Projects\ChatroomStarter\ChatroomStarter\ChatroomStarter\Client\obj\Debug\Client.pdb
+C:\Users\Zack\Desktop\ChatRoomProject\TCP_Chat_Room-master\Client\bin\Debug\Client.exe.config
+C:\Users\Zack\Desktop\ChatRoomProject\TCP_Chat_Room-master\Client\bin\Debug\Client.exe
+C:\Users\Zack\Desktop\ChatRoomProject\TCP_Chat_Room-master\Client\bin\Debug\Client.pdb
+C:\Users\Zack\Desktop\ChatRoomProject\TCP_Chat_Room-master\Client\obj\Debug\Client.csprojResolveAssemblyReference.cache
+C:\Users\Zack\Desktop\ChatRoomProject\TCP_Chat_Room-master\Client\obj\Debug\Client.exe
+C:\Users\Zack\Desktop\ChatRoomProject\TCP_Chat_Room-master\Client\obj\Debug\Client.pdb
