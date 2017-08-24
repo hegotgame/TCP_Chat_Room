@@ -13,11 +13,11 @@ namespace Server
         NetworkStream stream;
         TcpClient client;
 
+
         public Client(NetworkStream Stream, TcpClient Client)
         {
             stream = Stream;
             client = Client;
-
         }
 
 

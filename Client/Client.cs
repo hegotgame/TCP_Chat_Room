@@ -44,6 +44,7 @@ namespace Client
         private void Attribution()
         {
             Console.WriteLine("From: " + UserName + " at " + DateTime.Now);
+
         }
         public void Recieve()
         {

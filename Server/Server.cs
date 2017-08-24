@@ -21,46 +21,31 @@ namespace Server
 
         public Server()
         {
+
             server = new TcpListener(IPAddress.Parse("192.168.0.104"), 9999);
             server.Start();
             MessageLog = new Queue<string>();
             UserId = new Dictionary<string, TcpClient>();
-            
+
         }
         public void Run()
         {
             AcceptClient();
 
-            MessageLog.Enqueue(client.Recieve());
-            ClientMessage = MessageLog.Dequeue();
-            Respond(ClientMessage);
- 
+            while (true)
+            {
+                MessageLog.Enqueue(client.Recieve());
+                ClientMessage = MessageLog.Dequeue();
+                Respond(ClientMessage);
+            }
         }
         private void AcceptClient()
         {
-            try
-            {
-                while (true)
-                {
-                    TcpClient clientSocket = default(TcpClient);
-                    clientSocket = server.AcceptTcpClient();
-                    Console.WriteLine("Connected");
-                    //create thread
-                    NetworkStream stream = clientSocket.GetStream();
-                    client = new Client(stream, clientSocket);
-
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
-            finally
-            { if (server != null)
-                {
-                    server.Stop();
-                }
-            }
+                TcpClient clientSocket = default(TcpClient);
+                clientSocket = server.AcceptTcpClient();
+                Console.WriteLine("Connected");
+                NetworkStream stream = clientSocket.GetStream();
+                client = new Client(stream, clientSocket);
 
         }
         private void Respond(string body)

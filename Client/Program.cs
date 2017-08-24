@@ -10,10 +10,8 @@ namespace Client
     {
         static void Main(string[] args)
         {
-
             Client client = new Client("192.168.0.104", 9999);
             Parallel.Invoke(client.Send, client.Recieve);
-
         }
     }
 }
