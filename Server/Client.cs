@@ -12,9 +12,8 @@ namespace Server
     {
         NetworkStream stream;
         TcpClient client;
-        public Dictionary<int, string> UserId;
-        int UserNumber = 1;
-        string UserName;
+        public string UserName;
+
 
         public Client(NetworkStream Stream, TcpClient Client)
         {
@@ -23,11 +22,10 @@ namespace Server
             Console.WriteLine("Enter a username: ");
             UserName = Console.ReadLine();
 
-            UserId.Add(UserNumber, UserName);
-            UserNumber++;
-            
 
         }
+
+
         public void Send(string Message)
         {
             byte[] message = Encoding.ASCII.GetBytes(Message);

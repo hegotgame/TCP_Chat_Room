@@ -1,9 +1,3 @@
-c:\users\hobbitmafia\Dropbox\C#\ChatroomStarter\Client\bin\Debug\Client.exe.config
-c:\users\hobbitmafia\Dropbox\C#\ChatroomStarter\Client\bin\Debug\Client.exe
-c:\users\hobbitmafia\Dropbox\C#\ChatroomStarter\Client\bin\Debug\Client.pdb
-c:\users\hobbitmafia\Dropbox\C#\ChatroomStarter\Client\obj\Debug\Client.exe
-c:\users\hobbitmafia\Dropbox\C#\ChatroomStarter\Client\obj\Debug\Client.pdb
-c:\users\hobbitmafia\Dropbox\C#\ChatroomStarter\Client\obj\Debug\Client.csprojResolveAssemblyReference.cache
 C:\Users\jgill\Documents\Visual Studio 2015\Projects\ChatroomStarter\ChatroomStarter\ChatroomStarter\Client\bin\Debug\Client.exe.config
 C:\Users\jgill\Documents\Visual Studio 2015\Projects\ChatroomStarter\ChatroomStarter\ChatroomStarter\Client\bin\Debug\Client.exe
 C:\Users\jgill\Documents\Visual Studio 2015\Projects\ChatroomStarter\ChatroomStarter\ChatroomStarter\Client\bin\Debug\Client.pdb
