@@ -29,24 +29,30 @@ namespace Client
         }
         public void ConnectUserNameMessage()
         {
-            Console.WriteLine(UserName + " is connected. @ " + DateTime.Now);
+            Console.WriteLine(UserName + " is connected. at " + DateTime.Now);
         }
         public void Send()
         {
-            string messageString = UI.GetInput();
-            byte[] message = Encoding.ASCII.GetBytes(messageString);
-            stream.Write(message, 0, message.Count());
-            Attribution();
+            while (true)
+            {
+                string messageString = UI.GetInput();
+                byte[] message = Encoding.ASCII.GetBytes(messageString);
+                stream.Write(message, 0, message.Count());
+                Attribution();
+            }
         }
         private void Attribution()
         {
-            Console.WriteLine("from: " + UserName + " @ " + DateTime.Now);
+            Console.WriteLine("from: " + UserName + " at " + DateTime.Now);
         }
         public void Recieve()
         {
-            byte[] recievedMessage = new byte[256];
-            stream.Read(recievedMessage, 0, recievedMessage.Length);
-            UI.DisplayMessage(Encoding.ASCII.GetString(recievedMessage));
+            while (true)
+            {
+                byte[] recievedMessage = new byte[256];
+                stream.Read(recievedMessage, 0, recievedMessage.Length);
+                UI.DisplayMessage(Encoding.ASCII.GetString(recievedMessage));
+            }
         }
     }
 }

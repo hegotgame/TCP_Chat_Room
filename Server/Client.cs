@@ -12,15 +12,12 @@ namespace Server
     {
         NetworkStream stream;
         TcpClient client;
-        //public string UserName;
+        public string username;
 
         public Client(NetworkStream Stream, TcpClient Client)
         {
             stream = Stream;
             client = Client;
-            //Console.WriteLine("Enter a username: ");
-            //UserName = Console.ReadLine();
-
         }
 
 
