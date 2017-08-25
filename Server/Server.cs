@@ -22,7 +22,7 @@ namespace Server
         public Server()
         {
 
-            server = new TcpListener(IPAddress.Parse("192.168.0.104"), 9999);
+            server = new TcpListener(IPAddress.Parse("192.168.0.178"), 9999);
             server.Start();
             MessageLog = new Queue<string>();
             UserId = new Dictionary<string, TcpClient>();
@@ -30,13 +30,10 @@ namespace Server
         }
         public void Run()
         {
-            AcceptClient();
-
             while (true)
             {
-                MessageLog.Enqueue(client.Recieve());
-                ClientMessage = MessageLog.Dequeue();
-                Respond(ClientMessage);
+                AcceptClient();
+
             }
         }
         private void AcceptClient()
@@ -46,7 +43,13 @@ namespace Server
                 Console.WriteLine("Connected");
                 NetworkStream stream = clientSocket.GetStream();
                 client = new Client(stream, clientSocket);
-
+                MessageLog.Enqueue(client.Recieve());
+                ClientMessage = MessageLog.Dequeue();
+                Respond(ClientMessage);
+            // Broadcast to all new user has joined
+            // Add to dictionary
+            //                NewUserID();
+            //               client.UserId = 
         }
         private void Respond(string body)
         {

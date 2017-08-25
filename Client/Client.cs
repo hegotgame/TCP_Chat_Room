@@ -20,16 +20,19 @@ namespace Client
             clientSocket.Connect(IPAddress.Parse(IP), port);
             stream = clientSocket.GetStream();
             GetUserName();
-            ConnectUserNameMessage();
         }
         private void GetUserName()
         {
             Console.WriteLine("Please enter your username:");
-            UserName = Console.ReadLine();
+            UserName = UI.GetInput();
+            byte[] message = Encoding.ASCII.GetBytes(UserName);
+            stream.Write(message, 0, message.Count());
+            ConnectedUserNameMessage();
+            
         }
-        public void ConnectUserNameMessage()
+        public void ConnectedUserNameMessage()
         {
-            Console.WriteLine(UserName + " is connected. " + DateTime.Now);
+            Console.WriteLine(UserName + "You are connected... at " + DateTime.Now);
         }
         public void Send()
         {
