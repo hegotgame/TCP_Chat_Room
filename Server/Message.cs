@@ -17,6 +17,8 @@ namespace Server
             this.Body = Body;
 
             UserId = sender?.UserName;
+            //Original UserId = sender?.UserId;
+
 
         }
     }

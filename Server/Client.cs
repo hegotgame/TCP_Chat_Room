@@ -13,12 +13,16 @@ namespace Server
         NetworkStream stream;
         TcpClient client;
         public string UserName;
+        // Original: public string UserId;
 
         public Client(NetworkStream Stream, TcpClient Client)
         {
             stream = Stream;
             client = Client;
+
             UserName = ""; //Change to account names
+            // Original: UserId = "495933b6-1762-47a1-b655-483510072e73";
+
         }
 
 
