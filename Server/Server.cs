@@ -30,16 +30,8 @@ namespace Server
         }
         public void Run()
         {
-<<<<<<< HEAD
-            while (true)
-            {
-                AcceptClient();
-
-            }
-=======
                 Parallel.Invoke(AcceptClient, BroadCast);
                 
->>>>>>> cbd25fe58c98fa11b0ee06f42f8b5af013ebb90a
         }
         private void AcceptClient()
         {
@@ -50,19 +42,14 @@ namespace Server
                 Console.WriteLine("Connected");
                 NetworkStream stream = clientSocket.GetStream();
                 client = new Client(stream, clientSocket);
-<<<<<<< HEAD
-                MessageLog.Enqueue(client.Recieve());
-                ClientMessage = MessageLog.Dequeue();
-                Respond(ClientMessage);
-            // Broadcast to all new user has joined
-            // Add to dictionary
-            //                NewUserID();
-            //               client.UserId = 
-=======
+
+                // Broadcast to all new user has joined
+                // Add to dictionary
+                //                NewUserID();
+                //               client.UserId = 
+
                 Thread newClient = new Thread(new ThreadStart(RunClient(client)));
             }
-
->>>>>>> cbd25fe58c98fa11b0ee06f42f8b5af013ebb90a
         }
         private void Respond(string body)
         {
