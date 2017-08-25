@@ -42,7 +42,7 @@ namespace Server
                 NetworkStream stream = clientSocket.GetStream();
                 client = new Client(stream, clientSocket);
                 UserId.Add(client.UserName, clientSocket);
-                Thread newClient = new Thread(new ThreadStart(RunClient(client)));
+                Task.Run(()=>RunClient(client));
             }
         }
         private void Respond(string body)
