@@ -30,19 +30,27 @@ namespace Server
         }
         public void Run()
         {
+<<<<<<< HEAD
             while (true)
             {
                 AcceptClient();
 
             }
+=======
+                Parallel.Invoke(AcceptClient, BroadCast);
+                
+>>>>>>> cbd25fe58c98fa11b0ee06f42f8b5af013ebb90a
         }
         private void AcceptClient()
         {
+            while (true)
+            {
                 TcpClient clientSocket = default(TcpClient);
                 clientSocket = server.AcceptTcpClient();
                 Console.WriteLine("Connected");
                 NetworkStream stream = clientSocket.GetStream();
                 client = new Client(stream, clientSocket);
+<<<<<<< HEAD
                 MessageLog.Enqueue(client.Recieve());
                 ClientMessage = MessageLog.Dequeue();
                 Respond(ClientMessage);
@@ -50,10 +58,26 @@ namespace Server
             // Add to dictionary
             //                NewUserID();
             //               client.UserId = 
+=======
+                Thread newClient = new Thread(new ThreadStart(RunClient(client)));
+            }
+
+>>>>>>> cbd25fe58c98fa11b0ee06f42f8b5af013ebb90a
         }
         private void Respond(string body)
         {
              client.Send(body);
+        }
+
+        private ThreadStart RunClient(Client client)
+        {
+            while (true)
+            {
+                ClientMessage = client.Recieve();
+                MessageLog.Enqueue(ClientMessage);
+                Respond(ClientMessage);
+            }
+            
         }
 
         private void BroadCast()
