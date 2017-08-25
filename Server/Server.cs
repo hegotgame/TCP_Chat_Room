@@ -31,7 +31,6 @@ namespace Server
         public void Run()
         {
                 Parallel.Invoke(AcceptClient, BroadCast);
-                
         }
         private void AcceptClient()
         {
@@ -43,12 +42,9 @@ namespace Server
                 NetworkStream stream = clientSocket.GetStream();
                 client = new Client(stream, clientSocket);
 
-                // Broadcast to all new user has joined
-                // Add to dictionary
-                //                NewUserID();
-                //               client.UserId = 
+                UserId.Add(client.UserName, clientSocket);
+                Task.Run(()=>RunClient(client));
 
-                Thread newClient = new Thread(new ThreadStart(RunClient(client)));
             }
         }
         private void Respond(string body)

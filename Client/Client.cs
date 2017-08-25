@@ -32,7 +32,7 @@ namespace Client
         }
         public void ConnectedUserNameMessage()
         {
-            Console.WriteLine(UserName + "You are connected... at " + DateTime.Now);
+            Console.WriteLine(UserName + " you are now connected at " + DateTime.Now);
         }
         public void Send()
         {
