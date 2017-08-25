@@ -30,27 +30,36 @@ namespace Server
         }
         public void Run()
         {
-            AcceptClient();
-
-            while (true)
-            {
-                MessageLog.Enqueue(client.Recieve());
-                ClientMessage = MessageLog.Dequeue();
-                Respond(ClientMessage);
-            }
+                Parallel.Invoke(AcceptClient, BroadCast);
+                
         }
         private void AcceptClient()
         {
+            while (true)
+            {
                 TcpClient clientSocket = default(TcpClient);
                 clientSocket = server.AcceptTcpClient();
                 Console.WriteLine("Connected");
                 NetworkStream stream = clientSocket.GetStream();
                 client = new Client(stream, clientSocket);
+                Thread newClient = new Thread(new ThreadStart(RunClient(client)));
+            }
 
         }
         private void Respond(string body)
         {
              client.Send(body);
+        }
+
+        private ThreadStart RunClient(Client client)
+        {
+            while (true)
+            {
+                ClientMessage = client.Recieve();
+                MessageLog.Enqueue(ClientMessage);
+                Respond(ClientMessage);
+            }
+            
         }
 
         private void BroadCast()

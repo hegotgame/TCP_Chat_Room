@@ -12,12 +12,13 @@ namespace Server
     {
         NetworkStream stream;
         TcpClient client;
-
+        public string UserName;
 
         public Client(NetworkStream Stream, TcpClient Client)
         {
             stream = Stream;
             client = Client;
+            UserName = ""; //Change to account names
         }
 
 
@@ -33,7 +34,6 @@ namespace Server
             string recievedMessageString = Encoding.ASCII.GetString(recievedMessage);
 
             Console.WriteLine(recievedMessageString);
-
             return recievedMessageString;
         }
 
