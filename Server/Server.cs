@@ -73,6 +73,10 @@ namespace Server
                     User.Value.Send($"\n {CurrentSender} : {MessageLog.Dequeue()}");
                 }
             }
+            //thread this stuff below to run continuously
+            client.DisplayUserIsConnected();
+            client.Recieve();
+            //client.QuitApp();
         }
     }
 }
