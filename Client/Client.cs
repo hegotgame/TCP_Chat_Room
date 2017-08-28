@@ -24,9 +24,7 @@ namespace Client
         private void GetUserName()
         {
             Console.WriteLine("Please enter your username:");
-            UserName = UI.GetInput();
-            byte[] message = Encoding.ASCII.GetBytes(UserName);
-            stream.Write(message, 0, message.Count());
+            UserName = Console.ReadLine();
             
         }
     
@@ -46,8 +44,15 @@ namespace Client
             {
                 byte[] recievedMessage = new byte[256];
                 stream.Read(recievedMessage, 0, recievedMessage.Length);
-                UI.DisplayMessage(UserName,Encoding.ASCII.GetString(recievedMessage));
+                UI.DisplayMessage(Encoding.ASCII.GetString(recievedMessage));
             }
+        }
+
+        public void SendUserName()
+        {
+                string messageString = UI.GetInput();
+                byte[] message = Encoding.ASCII.GetBytes(messageString);
+                stream.Write(message, 0, message.Count());
         }
     }
 }
