@@ -66,6 +66,10 @@ namespace Server
                 if (User.Key == message.UserId) continue;
                 User.Value.Send(MessageLog.Dequeue());
             }
+            //thread this stuff below to run continuously
+            client.DisplayUserIsConnected();
+            client.Recieve();
+            //client.QuitApp();
         }
     }
 }
