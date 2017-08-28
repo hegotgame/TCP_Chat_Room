@@ -19,7 +19,11 @@ namespace Server
             client = Client;
             UserName = RecieveUserName();
         }
-
+        private void Attribution()
+        {
+            if (UserName == null) { Console.WriteLine("is connected"); };
+            Console.WriteLine(DateTime.Now + "   " + UserName);
+        }
 
         public void Send(string Message)
         {
@@ -33,7 +37,6 @@ namespace Server
                 byte[] recievedMessage = new byte[256];
                 stream.Read(recievedMessage, 0, recievedMessage.Length);
                 string recievedMessageString = Encoding.ASCII.GetString(recievedMessage);
-
                 Console.WriteLine(recievedMessageString);
                 Message newMessage = new Message(this, recievedMessageString);
                 Server.BroadCast(newMessage);
@@ -45,8 +48,8 @@ namespace Server
             byte[] recievedMessage = new byte[256];
             stream.Read(recievedMessage, 0, recievedMessage.Length);
             string recievedMessageString = Encoding.ASCII.GetString(recievedMessage);
-
             Console.WriteLine(recievedMessageString);
+            Attribution();
             return recievedMessageString;
         }
     }

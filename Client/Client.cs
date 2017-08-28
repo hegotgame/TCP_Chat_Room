@@ -37,7 +37,6 @@ namespace Client
                 stream.Write(message, 0, message.Count());
             }
         }
-
         public void Recieve()
         {
             while (true)
