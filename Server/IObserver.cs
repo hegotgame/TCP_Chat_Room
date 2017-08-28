@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Server
 {
-    interface IMessager
+    interface IObserver
     {
+        string ClientName { get; set; }
     }
 }
