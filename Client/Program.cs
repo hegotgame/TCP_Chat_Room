@@ -11,7 +11,8 @@ namespace Client
     {
         static void Main(string[] args)
         {
-            Client client = new Client("192.168.0.119", 9999);
+            Console.WriteLine("Please enter your username:");
+            Client client = new Client("10.123.95.34", 9999);
             Thread SendMessages = new Thread(new ThreadStart(client.Send));
             Thread Recievemessages = new Thread(new ThreadStart(client.Recieve));
 
