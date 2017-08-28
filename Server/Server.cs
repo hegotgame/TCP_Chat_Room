@@ -64,7 +64,7 @@ namespace Server
             foreach(KeyValuePair<string, Client> User in CurrentClients)
             {
                 if (User.Key == message.UserId) continue;
-                User.Value.Send(MessageLog.Dequeue());
+                User.Value.Send($"\n {MessageLog.Dequeue()}");
             }
             //thread this stuff below to run continuously
             client.DisplayUserIsConnected();
