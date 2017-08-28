@@ -32,6 +32,7 @@ namespace Client
         {
             while (true)
             {
+                //Andrew Added this so that we could make a commit so we could test and see if the gitignore file works
                 string messageString = UI.GetInput();
                 byte[] message = Encoding.ASCII.GetBytes(messageString);
                 stream.Write(message, 0, message.Count());
