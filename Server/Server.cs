@@ -20,7 +20,7 @@ namespace Server
 
         public Server()
         {
-            server = new TcpListener(IPAddress.Parse("192.168.0.119"), 9999);
+            server = new TcpListener(IPAddress.Parse("10.123.95.34"), 9999);
             server.Start();
             MessageLog = new Queue<string>();
             CurrentClients = new Dictionary<string, Client>();

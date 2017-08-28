@@ -22,7 +22,11 @@ namespace Server
         public void DisplayUserIsConnected()
         {
             if (UserName != null) { Console.WriteLine($"{UserName} has connected"); };
-            Console.WriteLine(DateTime.Now + "   " + UserName);
+            Attribution();
+        }
+        private void Attribution()
+        {
+            Console.WriteLine(DateTime.Now + "   " + UserName + "\n");
         }
 
         public void Send(string Message)
@@ -38,6 +42,7 @@ namespace Server
                 stream.Read(recievedMessage, 0, recievedMessage.Length);
                 string recievedMessageString = Encoding.ASCII.GetString(recievedMessage).Trim('\0');
                 Console.WriteLine(recievedMessageString);
+                Attribution();
                 Message newMessage = new Message(this, recievedMessageString);
                 Server.BroadCast(newMessage);
             }
@@ -49,7 +54,6 @@ namespace Server
             stream.Read(recievedMessage, 0, recievedMessage.Length);
             string recievedMessageString = Encoding.ASCII.GetString(recievedMessage);
             recievedMessageString = recievedMessageString.Trim('\0');
-            Console.WriteLine(recievedMessageString);
             return recievedMessageString;
         }
 
