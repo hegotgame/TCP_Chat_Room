@@ -37,21 +37,16 @@ namespace Client
                 string messageString = UI.GetInput();
                 byte[] message = Encoding.ASCII.GetBytes(messageString);
                 stream.Write(message, 0, message.Count());
-                Attribution();
             }
         }
-        private void Attribution()
-        {
-            Console.WriteLine("From: " + UserName + " at " + DateTime.Now);
 
-        }
         public void Recieve()
         {
             while (true)
             {
                 byte[] recievedMessage = new byte[256];
                 stream.Read(recievedMessage, 0, recievedMessage.Length);
-                UI.DisplayMessage(Encoding.ASCII.GetString(recievedMessage));
+                UI.DisplayMessage(UserName,Encoding.ASCII.GetString(recievedMessage));
             }
         }
     }

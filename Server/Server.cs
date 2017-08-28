@@ -13,24 +13,24 @@ namespace Server
     class Server
     {
         public static Client client;
-        Queue<string> MessageLog;
+        static Queue<string> MessageLog;
         TcpListener server;
-        Dictionary<string, TcpClient> ClientsUsed;
-        string ClientMessage;
-        
+        static Dictionary<string, Client> CurrentClients;
+        static Dictionary<string, Thread> RecieveThread;
 
         public Server()
         {
-
-            server = new TcpListener(IPAddress.Parse("192.168.0.178"), 9999);
+            server = new TcpListener(IPAddress.Parse("192.168.0.119"), 9999);
             server.Start();
             MessageLog = new Queue<string>();
-            ClientsUsed = new Dictionary<string, TcpClient>();
+            CurrentClients = new Dictionary<string, Client>();
+            RecieveThread = new Dictionary<string, Thread>();
 
         }
         public void Run()
         {
-                Parallel.Invoke(AcceptClient, BroadCast);
+            Task.Run(()=>AcceptClient());
+           
         }
         private void AcceptClient()
         {
@@ -43,31 +43,28 @@ namespace Server
                 Console.WriteLine("Connected");
                 NetworkStream stream = clientSocket.GetStream();
                 client = new Client(stream, clientSocket);
-
-                ClientsUsed.Add(client.UserName, clientSocket);
-                Task.Run(()=>RunClient(client));
+                AddNewClient(client);
 
             }
         }
-        private void Respond(string body)
+
+        private void AddNewClient(Client NewClient)
         {
-             client.Send(body);
+            CurrentClients.Add(NewClient.UserName, NewClient);
+
+            RecieveThread.Add(NewClient.UserName, new Thread(new ThreadStart(NewClient.Recieve)));
+
+            RecieveThread[NewClient.UserName].Start();
         }
 
-        private ThreadStart RunClient(Client client)
+        public static void BroadCast(Message message)
         {
-            while (true)
+            MessageLog.Enqueue(Convert.ToString(message.Body));
+            foreach(KeyValuePair<string, Client> User in CurrentClients)
             {
-                ClientMessage = client.Recieve();
-                MessageLog.Enqueue(ClientMessage);
-                Respond(ClientMessage);
+                if (User.Key == message.UserId) continue;
+                User.Value.Send(MessageLog.Dequeue());
             }
-            
-        }
-
-        private void BroadCast()
-        {
-            //requires a foreach loop to send the latest message to every client
         }
     }
 }
