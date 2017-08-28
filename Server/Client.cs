@@ -42,7 +42,6 @@ namespace Server
                 stream.Read(recievedMessage, 0, recievedMessage.Length);
                 string recievedMessageString = Encoding.ASCII.GetString(recievedMessage).Trim('\0');
                 Console.WriteLine(recievedMessageString);
-                Attribution();
                 Message newMessage = new Message(this, recievedMessageString);
                 Server.BroadCast(newMessage);
             }

@@ -20,7 +20,7 @@ namespace Server
 
         public Server()
         {
-            server = new TcpListener(IPAddress.Parse("10.123.95.34"), 9999);
+            server = new TcpListener(IPAddress.Parse("192.168.88.142"), 8080);
             server.Start();
             MessageLog = new Queue<string>();
             CurrentClients = new Dictionary<string, Client>();
@@ -59,12 +59,19 @@ namespace Server
 
         public static void BroadCast(Message message)
         {
+            string CurrentSender = "";
             MessageLog.Enqueue(Convert.ToString(message.Body));
-
+            
             foreach(KeyValuePair<string, Client> User in CurrentClients)
             {
-                if (User.Key == message.UserId) continue;
-                User.Value.Send($"\n {MessageLog.Dequeue()}");
+                if (User.Key == message.UserId)
+                {
+                    CurrentSender = message.UserId;
+                }
+                else
+                {
+                    User.Value.Send($"\n {CurrentSender} : {MessageLog.Dequeue()}");
+                }
             }
         }
     }
