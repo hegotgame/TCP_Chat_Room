@@ -15,7 +15,7 @@ namespace Server
         public static Client client;
         Queue<string> MessageLog;
         TcpListener server;
-        Dictionary<string, TcpClient> UserId;
+        Dictionary<string, TcpClient> ClientsUsed;
         string ClientMessage;
         
 
@@ -25,7 +25,7 @@ namespace Server
             server = new TcpListener(IPAddress.Parse("192.168.0.178"), 9999);
             server.Start();
             MessageLog = new Queue<string>();
-            UserId = new Dictionary<string, TcpClient>();
+            ClientsUsed = new Dictionary<string, TcpClient>();
 
         }
         public void Run()
@@ -38,11 +38,13 @@ namespace Server
             {
                 TcpClient clientSocket = default(TcpClient);
                 clientSocket = server.AcceptTcpClient();
+                //server tells everyone that client connected
+                //utilizing an observer pattern
                 Console.WriteLine("Connected");
                 NetworkStream stream = clientSocket.GetStream();
                 client = new Client(stream, clientSocket);
 
-                UserId.Add(client.UserName, clientSocket);
+                ClientsUsed.Add(client.UserName, clientSocket);
                 Task.Run(()=>RunClient(client));
 
             }

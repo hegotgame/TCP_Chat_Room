@@ -27,13 +27,9 @@ namespace Client
             UserName = UI.GetInput();
             byte[] message = Encoding.ASCII.GetBytes(UserName);
             stream.Write(message, 0, message.Count());
-            ConnectedUserNameMessage();
             
         }
-        public void ConnectedUserNameMessage()
-        {
-            Console.WriteLine(UserName + " you are now connected at " + DateTime.Now);
-        }
+    
         public void Send()
         {
             while (true)
