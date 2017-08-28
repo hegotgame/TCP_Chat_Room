@@ -27,7 +27,6 @@ namespace Client
             UserName = UI.GetInput();
             byte[] message = Encoding.ASCII.GetBytes(UserName);
             stream.Write(message, 0, message.Count());
-            
         }
     
         public void Send()
@@ -37,13 +36,7 @@ namespace Client
                 string messageString = UI.GetInput();
                 byte[] message = Encoding.ASCII.GetBytes(messageString);
                 stream.Write(message, 0, message.Count());
-                Attribution();
             }
-        }
-        private void Attribution()
-        {
-            Console.WriteLine("From: " + UserName + " at " + DateTime.Now);
-
         }
         public void Recieve()
         {
