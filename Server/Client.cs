@@ -17,11 +17,11 @@ namespace Server
         {
             stream = Stream;
             client = Client;
-            UserName = RecieveUserName();
+            AskForUserName();
         }
-        private void Attribution()
+        public void DisplayUserIsConnected()
         {
-            if (UserName == null) { Console.WriteLine("is connected"); };
+            if (UserName != null) { Console.WriteLine($"{UserName} has connected"); };
             Console.WriteLine(DateTime.Now + "   " + UserName);
         }
 
@@ -36,7 +36,7 @@ namespace Server
             {
                 byte[] recievedMessage = new byte[256];
                 stream.Read(recievedMessage, 0, recievedMessage.Length);
-                string recievedMessageString = Encoding.ASCII.GetString(recievedMessage);
+                string recievedMessageString = Encoding.ASCII.GetString(recievedMessage).Trim('\0');
                 Console.WriteLine(recievedMessageString);
                 Message newMessage = new Message(this, recievedMessageString);
                 Server.BroadCast(newMessage);
@@ -48,9 +48,15 @@ namespace Server
             byte[] recievedMessage = new byte[256];
             stream.Read(recievedMessage, 0, recievedMessage.Length);
             string recievedMessageString = Encoding.ASCII.GetString(recievedMessage);
+            recievedMessageString = recievedMessageString.Trim('\0');
             Console.WriteLine(recievedMessageString);
-            Attribution();
             return recievedMessageString;
+        }
+
+        private void AskForUserName()
+        {
+            
+            UserName = RecieveUserName();
         }
     }
 }
